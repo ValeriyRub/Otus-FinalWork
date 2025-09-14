@@ -11,6 +11,15 @@ repositories {
     mavenCentral()
 }
 
+def dotenv = new Properties()
+file('.env').withInputStream { stream -> dotenv.load(stream) }
+
+test {
+    dotenv.each { key, value ->
+        systemProperty key, value
+    }
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

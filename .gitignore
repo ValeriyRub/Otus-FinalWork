@@ -3,5 +3,6 @@
 .gradle/*
 gradle/*
 build/*
+*.env
 ### Mac OS ###
 .DS_Store

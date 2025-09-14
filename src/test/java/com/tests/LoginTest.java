@@ -26,6 +26,8 @@ public class LoginTest extends BaseTest {
         MyWishPage myWishPage = loginPage.loginAs(config().userLogin(), config().userPassword());
         myWishPage.clickOnExit();
         assertThat(page).hasURL("https://wishlist.otus.kartushin.su/login");
+        System.out.println("Login = " + config().userLogin());
+        System.out.println("Base URL = " + config().baseUrl());
     }
 }
 
