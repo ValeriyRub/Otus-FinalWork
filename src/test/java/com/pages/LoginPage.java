@@ -42,7 +42,7 @@ public class LoginPage extends BasePage {
     }
 
 
-    @Step("Login attempt to Swag Labs")
+    @Step("Login attempt")
     public MyWishPage loginAs(final String login, final String password) {
         open();
         typeLogin(login);

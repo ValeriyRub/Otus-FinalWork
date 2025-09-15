@@ -63,6 +63,11 @@ public final class MyWishPage extends BasePage {
         return page.locator(".modal-title.h4");
     }
 
+    @Step("Has title add wish with no all attribute")
+    public Locator getTitleNoAllAttribute() {
+        return page.locator("//div[@class='mt-5 container']");
+    }
+
     @Step("Get title Wish by text: {titleText}")
     public Locator getTitleWish(String titleText) {
         return page.locator("//div[contains(@class, 'card-title') and text()='" + titleText + "']");
@@ -127,6 +132,13 @@ public final class MyWishPage extends BasePage {
         page.fill("//input[@placeholder='https://example.com/product']", giftInfo.getUrlMarket());
         page.fill("//input[@type='number']", String.valueOf(giftInfo.getPrice()));
         page.fill("//input[@placeholder='https://example.com/image.jpg']", giftInfo.getUrlImage());
+        return this;
+    }
+
+    @Step ("Fill gift information2")
+    public MyWishPage fillGiftInfo2(GiftInfo giftInfo){
+        page.fill("//input[@type='text']", giftInfo.getName());
+        page.fill("//textarea[@class='form-control' and @required]", giftInfo.getInfo());
         return this;
     }
 }

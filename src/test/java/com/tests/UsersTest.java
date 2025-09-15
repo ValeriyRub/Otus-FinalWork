@@ -12,7 +12,6 @@ public class UsersTest extends LoggedInBaseTest {
 
     @Test
     public void watchUserWishes() {
-       // MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
 
         myWishPage.clickOnUsers();
 

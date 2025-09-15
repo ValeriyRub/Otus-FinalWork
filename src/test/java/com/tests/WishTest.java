@@ -15,8 +15,6 @@ public class WishTest extends LoggedInBaseTest {
 
     @Test
     public void testAddWish() {
-        //MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
-
         myWishPage.createWishList();
     assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
         WishInfo wishInfo = WishInfo.builder()
@@ -35,8 +33,6 @@ public class WishTest extends LoggedInBaseTest {
 
     @Test
     public void testDeleteWish() {
-        MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
-
         myWishPage.createWishList();
         assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
         WishInfo wishInfo = WishInfo.builder()
@@ -52,8 +48,6 @@ public class WishTest extends LoggedInBaseTest {
 
     @Test
     public void testDeletGift() {
-        MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
-
         myWishPage.createWishList();
         assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
         WishInfo wishInfo = WishInfo.builder()
@@ -82,8 +76,6 @@ public class WishTest extends LoggedInBaseTest {
 
     @Test
     public void testAddTwoGift() {
-        MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
-
         myWishPage.createWishList();
         assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
         WishInfo wishInfo = WishInfo.builder()
@@ -121,8 +113,6 @@ public class WishTest extends LoggedInBaseTest {
 
     @Test
     public void testGiftReserv() {
-        MyWishPage myWishPage = loginPage.loginAs("Testrubtsov", "Testrubtsov");
-
         myWishPage.createWishList();
         assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
         WishInfo wishInfo = WishInfo.builder()
@@ -147,5 +137,28 @@ public class WishTest extends LoggedInBaseTest {
         assertThat(myWishPage.getTitleGift("Привет4")).hasText("Привет4");
         myWishPage.giftReserv("Привет4");
         assertThat(myWishPage.giftReservStatus("Привет4")).hasText("Подарок зарезервирован");
+    }
+
+    @Test
+    public void testAddGiftNoAllAtribut() {
+        myWishPage.createWishList();
+        assertThat(myWishPage.getTitleAddWish()).hasText("Создать новый список желаний");
+        WishInfo wishInfo = WishInfo.builder()
+                .name("Test7")
+                .info("Test7")
+                .build();
+
+        myWishPage.fillWishInfo(wishInfo).acceptWishList();
+        assertThat(myWishPage.getTitleWish("Test7")).hasText("Test7");
+
+        myWishPage.seeWishList("Test7");
+        assertThat(myWishPage.getTitle()).hasText("Test7");
+        myWishPage.addNewGift();
+        GiftInfo giftInfo = GiftInfo.builder()
+                .name("Привет")
+                .info("Это тестовый вариант")
+                .build();
+        myWishPage.fillGiftInfo2(giftInfo).acceptAddNewGift();
+        assertThat(myWishPage.getTitleNoAllAttribute()).hasText("Ошибка: Не удалось добавить подарок/тест");
     }
 }
