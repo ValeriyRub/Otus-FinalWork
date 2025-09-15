@@ -15,8 +15,11 @@ def dotenv = new Properties()
 file('.env').withInputStream { stream -> dotenv.load(stream) }
 
 test {
+    useJUnitPlatform()
+
     dotenv.each { key, value ->
         systemProperty key, value
+        environment key, value
     }
 }
 
@@ -30,9 +33,3 @@ dependencies {
     implementation("org.postgresql:postgresql:42.7.4")
 }
 
-test {
-    useJUnitPlatform()
-    environment "url", "jdbc:postgresql://188.130.251.62:5432/wishlist"
-    environment "username", "student"
-    environment "password", "student"
-}

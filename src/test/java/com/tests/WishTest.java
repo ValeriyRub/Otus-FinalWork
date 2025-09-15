@@ -26,7 +26,9 @@ public class WishTest extends LoggedInBaseTest {
 
         myWishPage.fillWishInfo(wishInfo).acceptWishList();
         assertThat(myWishPage.getTitleWish("Test")).hasText("Test");
-
+        System.out.println("URL: " + System.getenv("url"));
+        System.out.println("Username: " + System.getenv("username"));
+        System.out.println("Password: " + System.getenv("password"));
         boolean existsInDB = Command.checkWishlistTitleExists("Test");
         assertTrue(existsInDB);
     }
